@@ -1,0 +1,25 @@
+to compile and run project2_encryption 
+Compile the code with the following command:
+g++ encryption.cpp -lcrypto -lssl -o encryption
+
+This will create an executable file named encryption.
+then run the executable with the following command: 
+./encryption encryptedMessage.txt pubkey.pem privkey.pem
+
+The program will first decrypt the encrypted message with the public key and save the
+ decrypted message to a file named symmetric.txt. Then it will encrypt a sample text file named original.txt 
+ with the decrypted message as the symmetric key and save the encrypted file to a file named encrypted.txt. 
+ Finally, it will decrypt the encrypted file with the private key and print the decrypted text to the console.
+
+for project2_decryption.cpp: Compile the code with the OpenSSL library. You can use the following command to compile the code:
+
+g++ -o project2_decryption project2_decryption.cpp -lcrypto
+This command will generate an executable file named project2_decryption.
+
+Run the executable by typing the command 
+./project2_decryption signed.txt public.pem symmetric.txt
+
+This command will verify the signature of the signed file using the public key, 
+decrypt the signed file using the symmetric key, and write the decrypted output to a file named decrypted.txt in the same directory.
+
+After the program finishes running, you can open the decrypted.txt file to view the decrypted output.

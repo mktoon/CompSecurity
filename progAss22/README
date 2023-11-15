@@ -1,0 +1,27 @@
+I created makefiles for questions 2a,2b,2c,2d.
+to compile and run open folder ie 2a then make, then run as question2a respectively. same for all the questions in number 2. 
+tot test 2a with key of choice, you simply need to modify the key array in the main function.
+
+for 2b:
+to compile and run: 
+make, ./question2b
+
+
+for 2c:
+to compile and run:
+make,  ./question2c
+to use a different key: you would need to modify the key array in the main() function to contain the bits of the key you want to use.
+
+for 2d:
+to compile and run:
+make, ./question2d
+To use a different key in the above code, you need to replace the current key value with the new key value. In the code provided, the key is defined as a constant uint64_t variable called "key". You can replace the value of this variable with the value of your own key.
+
+For example, to use the key "0x133457799BBCDFF1", you can change the line:
+
+const uint64_t key = 0x0123456789ABCDEF;
+
+to:
+
+const uint64_t key = 0x133457799BBCDFF1;
+Once you have changed the key value, you can run the program with the new key value to encrypt or decrypt messages.

@@ -1,0 +1,36 @@
+**README
+APPROACH TO SOLVING THIS **
+This code performs frequency analysis on a ciphertext, uses permutation to find a possible key, 
+and uses the key to decrypt the ciphertext. It also counts the number of dictionary words matched in the 
+decrypted text and sorts the letters of the ciphertext array by frequency count.
+
+**step by step approach and how the code and the different functions work;**
+This code defines several global variables. ciphertext, key, and plaintext are character arrays with a size of 100000. freqTable is a 2-dimensional integer array with a size of 26x3. alphsize is defined as a constant with a value of 26(letters of the alphabet).
+
+**analyseString()** 
+This function opens a file named ciphertext.txt. It reads the file one character at a time and stores the character in an array called ciphertext. If the character is a letter, it updates the corresponding frequency count in the freqTable array. Finally, the function closes the file.
+
+**permute()** 
+This function performs a permutation on the freqTable array by swapping adjacent letters with corresponding frequency counts. It then computes the score of the resulting permutation using the  countDictionary() function. If the new score is better than the old score, it keeps the new permutation. Otherwise, it reverts the swap. The function repeats this process six times, swapping permutations in groups of four. Finally, the function prints the final permutation from the best score and returns 0.
+
+**decrypt()** 
+This function prompts the user to enter a key and reads it into an array called key. It then copies the ciphertext array into the plaintext array. 
+It initializes each row of the freqTable array with the corresponding letter of the ciphertext array. 
+It then sorts the freqTable array in descending order of frequency count. 
+Finally, it decrypts the plaintext array by shifting each letter by two positions, if it is a valid letter, using the permutation in the freqTable array.
+
+**upperCase()** 
+This function takes a character pointer as input and converts all lowercase letters in the string to uppercase letters.
+
+**countDictionary()** 
+This function counts the number of dictionary words matched in the plaintext array. 
+It opens a file named dictionary.txt in read-only mode and reads it one line at a time. 
+It then compares each word in the dictionary to the plaintext array. If the word is found in the plaintext array, it increments a counter. Finally, the function returns the number of matches in the dictionary.
+
+**sortString()**
+This function uses three arrays: characters, counts, and indices. 
+**characters** array contains the letters of the alphabet, 
+**counts** array contains the frequency counts of each letter in the ciphertext array, 
+**indices** array contains the index of each letter in the characters array. 
+The function then sorts the counts array in descending order and rearranges the indices array accordingly. 
+Finally, the function prints the sorted characters array.

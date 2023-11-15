@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+// S-boxes function
+int32_t sboxes(const int64_t input) {
+    int32_t output = 0;
+
+    for (size_t i = 0; i < 8; ++i) {
+        size_t row = (input >> (42 - 6 * i)) & 0x3;
+        size_t col = ((input >> (47 - 6 * i)) & 0x1) << 3 |
+                     ((input >> (46 - 6 * i)) & 0x1) << 2 |
+                     ((input >> (45 - 6 * i)) & 0x1) << 1 |
+                     ((input >> (44 - 6 * i)) & 0x1);
+        output |= S[i][row][col] << (28 - 4 * i);
+    }
+
+    return output;
+}
+
+// P-box function
+int32_t pbox(const int32_t input) {
+    int32_t output = 0;
+
+    for (size_t i = 0; i < 32; ++i) {
+        output |= ((input >> (32 - P[i])) & 0x1) << (31 - i);
+    }
+
+    return output;
+}
+
+
+
+int main()
+{
+    int s_box[8][4][16] = {
+        { // S-box 1
+            {1110, 0100, 1101, 0001, 0010, 1111, 1011, 1000, 0011, 1010, 0110, 1100, 0101, 1001, 0000, 0111},
+            {0000, 1111, 0111, 0100, 1110, 0010, 1101, 0001, 1010, 0110, 1100, 1011, 1001, 0101, 0011, 1000},
+            {0100, 0001, 1110, 1000, 1101, 0110, 0010, 1011, 1111, 1100, 1001, 0111, 0011, 1010, 0101, 0000},
+            {1111, 1100, 1000, 0010, 0100, 1001, 0001, 0111, 0101, 1011, 0011, 1110, 1010, 0000, 0110, 1101}
+        },
+        { // S-box 2
+            // TODO: fill in the values for S-box 2
+        }
+    };
+
+    int input = 0b100011; // example input
+
+    int row = (input & 0b100000) >> 5 | (input & 0b1);
+    int col = (input & 0b011110) >> 1;
+    int output = s_box[0][row][col];
+    printf("S-box 1 output: %x\n", output);
+
+    // TODO: repeat the above for S-boxes 2 through 8
+
+    int64_t input = 0x0123456789abcdef;
+    int32_t output1 = sboxes(input);
+    int32_t output2 = pbox(output1);
+
+    printf("Input: 0x%016lx\n", input);
+    printf("S-boxes output: 0x%08x\n", output1);
+    printf("P-box output: 0x%08x\n", output2);
+
+    return 0;
+}

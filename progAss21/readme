@@ -1,0 +1,8 @@
+to compile and run:
+make,    ./question1a
+to use a different key: 
+To use a different key in the code provided, you need to modify the value of c_key in the #define statement at the beginning of the code.
+
+For example, if you want to use a key of 10, change the statement #define c_key 7 to #define c_key 10. This will change the value of the c_key constant used in the encryption and decryption functions to 10.
+
+Once you have made this change, you can compile and run the code with the new key value.
